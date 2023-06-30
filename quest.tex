@@ -1,0 +1,138 @@
+
+\documentclass[
+  % Babel language, also used to load translations
+  english,
+  oneside,
+  fleqn,
+  style=custom,
+  stamp]{sdapsclassic}
+\usepackage[utf8]{inputenc}
+% For demonstration purposes
+\usepackage{multicol}
+\usepackage{sdapspdf}
+\usepackage{amsmath}
+\ExplSyntaxOn
+\sdaps_context_append:nn{*}{pdf_form=true}
+%\sdaps_context_append:nn{*}{default=true}
+\ExplSyntaxOff
+
+\ExplSyntaxOn
+\bool_gset_false:N \g_sdaps_draft_bool
+\ExplSyntaxOff
+\title{Advisor Feedback Sheet}
+
+\begin{document}
+  % Everything you do should be done inside the questionnaire environment.
+
+  % If you don't like the default text at the beginning of each questionnaire
+  % you can remove it with the optional [noinfo] parameter for the environment 
+  \begin{questionnaire}[noinfo]
+	  \begin{Form}
+    % There is a predefined "info" style to hilight some text.
+    \begin{info}
+	    Please fill out the sheet as honest as possible. As far as I can foresee, there will be no negative or positive consequences for being honest. You should fill this questionnaire only after you received your grade. The aim of this feedback is, to improve our supervision for future generations of students!
+    \end{info}
+	\section{General Data}
+	% Prepare some stuff so that we can access the specialized commands more easily.
+\ExplSyntaxOn
+\let\myquestionbegin\sdaps_qobject_begin:nnn
+\let\mycheckbox\sdaps_checkbox:nn
+\let\mytextbox\sdaps_textbox_hbox:nnn
+\let\myanswer\sdaps_answer:n
+\let\myquestionend\sdaps_qobject_end:n
+\ExplSyntaxOff
+
+\myquestionbegin{name}{Choice}{General}
+\begin{equation*}
+\hspace*{-1cm}
+\begin{aligned}
+&\text{Your Name: } &\mytextbox{}{3bp}{\phantom{(typically a doctoral researcher)12}}\myanswer{name} &\\
+&\text{"Junior" advisor: } &\mytextbox{}{3bp}{\phantom{(typically a doctoral researcher)12}} \myanswer{junior} &\text{ (typically a doctoral researcher)} \\
+&\text{"Senior" advisor: } &\mytextbox{}{3bp}{\phantom{(typically a principal investigator)}} \myanswer{senior} &\text{ (typically a principal investigator)}
+\end{aligned}
+\end{equation*}
+\myquestionend{name}
+
+
+	 \begin{choicequestion}[cols=4]{What kind of project did you work on?}
+       \choiceitem{Internship}
+       \choiceitem{Bachelor}
+       \choiceitem{Master}
+       \choiceitem{PhD}
+     \end{choicequestion}
+
+	
+    % You can structure the document using sections. You should not use
+    % subsections yourself, as these are used to typeset question text.
+    \section{Tick the Boxes}
+	Please tick the box that you agree with most.
+	  \begin{choicegroup}[rowsep=4pt,colsep=-8pt,singlechoice]{My "Junior" Thesis-Advisor...}
+%		  		  \question {}{disagree}{agree}
+\choice{disagree}
+\choice{\phantom{disagree}}
+\choice{\phantom{disagree}}
+\choice{\phantom{disagree}}
+\choice{\phantom{d}agree\phantom{is}}
+	      \question{... is easy to get a meeting with.\phantom{spa}}
+	      \question{... gives me as much time as I need when we meet.\phantom{spa}}
+	      \question{... encourages me to come over for help.\phantom{spa}}
+	      \question{... defined grade-requirements at the beginning of my thesis.\phantom{spa}}
+	      \question{... provides starting points to learn the required theory\phantom{spa}}
+	      \question{... encourages me to solve problems independently.\phantom{spa}}
+	      \question{... encourages me to express my thoughts, critiques and feelings.\phantom{spa}}
+	      \question{... is a good listener.\phantom{spa}}
+	      \question{... has expertise in the thesis topic/methodology.\phantom{spa}}
+	      \question{... gave feedback about my writings in a timely manner.\phantom{spa}}
+	      \question{... had \textbf{unrealistic} expectations of the quantity/quality/scope of the thesis\phantom{spa}}
+	\end{choicegroup}
+	\begin{choicegroup}[rowsep=3pt,colsep=-8pt,singlechoice]{My "Senior" Thesis-Advisor...}
+		\choice{disagree}
+\choice{\phantom{disagree}}
+\choice{\phantom{disagree}}
+\choice{\phantom{disagree}}
+\choice{\phantom{d}agree\phantom{is}}
+      % We have to add the possible choices at the start.
+	  \question{... is approachable for hard (content, methods) problems\phantom{spa}}
+	  \question{... is approachable for soft (relation, feelings) problems\phantom{spa}}
+	  \question{... knows the progress of my thesis\phantom{spa}}
+	  
+    \end{choicegroup}
+\section{Self-Assesement}
+	\begin{choicegroup}[rowsep=3pt,colsep=-8pt,singlechoice]{As a student, I ...}
+		\choice{disagree}
+\choice{\phantom{disagree}}
+\choice{\phantom{disagree}}
+\choice{\phantom{disagree}}
+\choice{\phantom{d}agree\phantom{is}}
+	  \question{... independently made appointments to see my advisor\phantom{spa}}
+	  \question{... identified and solved problems on my own\phantom{spa}}
+	  \question{... came well prepared to appointments\phantom{spa}}
+	  
+    \end{choicegroup}
+    \section{Written Feedback}
+It has been shown (e.g. Seldin 1992), that written feedback reveals the most useful information. So please take some time and comment on your experience with the supervision in your thesis.
+    \textbox{1.9cm}{What are your "Junior" advisor’s major strengths or best features?}
+    \textbox{1.9cm}{What could your "Junior" advisor do to improve the quality of his/her advising?}
+    \textbox{1.9cm}{Which advise would you give a fellow student thinking of starting a thesis with "Junior" advisor?}
+
+    \textbox{1.9cm}{What are your "Senior" advisor’s major strengths or best features?}
+    \textbox{1.9cm}{What could your "Senior" advisor do to improve the quality of his/her advising?}
+    \textbox{1.9cm}{Which advise would you give a fellow student thinking of starting a thesis with "Senior" advisor?}
+
+    \textbox{1.9cm}{Do you have any other comments?}
+
+	
+		 \begin{choicequestion}[cols=1]{Can we publicly (anonymously) share some of your answers?}
+       \choiceitem{Yes, I consent to the public use (e.g. lab website) of excerpts of my "Which advise would you give to fellow students"-Answer to inform future students. }
+       \choiceitem{Yes, I consent to the public use (e.g. lab website) of excerpts of \textbf{all answers} to inform future students.}
+       \choiceitem{No, I prefer my answers to remain private.}
+       \end{choicequestion}
+       
+       	Thank you for your time and brain computing power in the S-CCS Group!
+
+	\end{Form}
+	
+  \end{questionnaire}
+\end{document}
+
+
